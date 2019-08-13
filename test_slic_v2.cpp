@@ -16,7 +16,8 @@ int main( int argc, char ** argv )
     cout << "====\n\t" << argv[0] << "\n====\n";
 
     // Load Image
-    cv::Mat image = cv::imread( "../dog.png", CV_LOAD_IMAGE_COLOR );
+    cv::Mat image = cv::imread( "../dog.png", CV_LOAD_IMAGE_COLOR )  ;
+    cv::resize( image, image, cv::Size(), 0.1, 0.1 );
     cout << "Image Dimensions: " << image.rows << " x " << image.cols << " x " << image.channels() << endl;
     cv::imshow( "input image", image );
 
@@ -26,8 +27,8 @@ int main( int argc, char ** argv )
 
     // Params
     int w = image.cols, h = image.rows;
-    int nr_superpixels = 400;
-    int nc = 40;
+    int nr_superpixels = 10;
+    int nc = 5;
     double step = sqrt((w * h) / (double) nr_superpixels); ///< step size per cluster
     cout << "Params:\n";
     cout << "step size per cluster: " << step << endl;
@@ -45,7 +46,8 @@ int main( int argc, char ** argv )
     slic.display_contours(&__ipl__image, CV_RGB(255,0,0));
     cv::imshow( "result", image );
     // cv::imwrite( "dog_segmentation_v2.png", image );
-
     cv::waitKey(0);
+
+    slic.debug();
     return 0;
 }

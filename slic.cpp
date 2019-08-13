@@ -377,3 +377,52 @@ void Slic::colour_with_cluster_means(IplImage *image) {
         }
     }
 }
+
+
+void Slic::debug()
+{
+    cout << "====DEBUG====\n";
+
+    // The cluster centers of each cluster
+    // 400 x 5
+    cout << "---\n";
+    cout << "#centers=" << centers.size() << endl;
+    for (int i = 0; i < (int) centers.size(); i++) {
+        cout << "center[" << i << "].size() = " << centers[i].size() << "\t";
+        for( int j=0 ; j<centers[i].size() ; j++ ) {
+            cout << centers[i][j] << ", ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    //
+    cout << "---\n";
+    cout << "number of occurences of each center\n" ;
+    cout << "len(center_counts) = " << center_counts.size() << endl;
+    for( int i=0 ; i<center_counts.size() ; i++ )
+        cout << center_counts[i] << ", ";
+    cout << endl;
+
+    // Which cluster a pixel belongs to
+    cout << "---\n";
+    cout << "clusters: " << clusters.size() << " x " << clusters[0].size() << endl;
+    for( int i=0 ; i<clusters.size() ; i++ )
+    {
+        cout << "clusters[" << i << "]:";
+        for( int j=0 ; j< clusters[i].size() ; j++ )
+            cout << clusters[i][j] << ", ";
+        cout << endl;
+    }
+
+    cout << "---\n";
+    cout << "distances: " << distances.size() << " x " << distances[0].size() << endl;
+    for( int i=0 ; i<distances.size() ; i++ )
+    {
+        cout << "distances[" << i << "]:";
+        for( int j=0 ; j< distances[i].size() ; j++ )
+            cout << std::setprecision(3) <<  distances[i][j] << ", ";
+        cout << endl;
+    }
+
+}

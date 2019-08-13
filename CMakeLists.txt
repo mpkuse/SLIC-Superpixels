@@ -7,6 +7,9 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
+set (CMAKE_CXX_STANDARD 11)
+
+
 
 add_executable( test_slic_v2
     test_slic_v2.cpp
@@ -15,3 +18,14 @@ add_executable( test_slic_v2
 
 
 target_link_libraries( test_slic_v2  ${OpenCV_LIBRARIES} )
+
+
+
+
+add_executable( test_slic_v2_rgbd
+    test_slic_v2_rgbd.cpp
+    SlicClustering.cpp
+    )
+
+
+target_link_libraries( test_slic_v2_rgbd  ${OpenCV_LIBRARIES} )
